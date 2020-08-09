@@ -78,19 +78,43 @@ def login(request):
         
 
 
-# CREATE NEW POST
-def create_new_post(request):
+# CREATE NEW IMAGE POST
+def create_new_image_post(request):
     if request.method == "GET":
         context = {
             'videos': Video_item.objects.all(),
             'cur_user': User.objects.get(id = request.session['user_id']),
         }
         return redirect('/dashboard')
-
     else:
         poster = User.objects.get(id = request.session['user_id'])
-        new_post = Post.objects.create_post(request.POST, request.FILES, poster)
+        new_post = Post.objects.create_image_post(request.POST, request.FILES, poster)
         return redirect('/dashboard')
+
+# CREATE NEW VIDEO POST
+def create_new_video_post(request):
+    if request.method == "GET":
+        context = {
+            'videos': Video_item.objects.all(),
+            'cur_user': User.objects.get(id = request.session['user_id']),
+        }
+        return redirect('/dashboard')
+    else:
+        poster = User.objects.get(id = request.session['user_id'])
+        new_post = Post.objects.create(title = request.POST['title'], content = request.POST['content'], poster = poster)
+        new_video = Video_item.objects.create(video = request.POST['video_item'], post = new_post, video_poster = poster )
+        return redirect('/dashboard')
+
+
+
+
+
+
+
+
+
+
+
 
 # LOGOUT
 def logout(request):

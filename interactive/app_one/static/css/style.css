@@ -44,15 +44,8 @@ nav{
 .one_video_container{
     width: 40%;
     height: auto;
-    /* display: inline-block; */
-    margin: 20px;
 }
 
-/* .avatar{
-    width: 40px;
-    height: 40px;
-    border: 50%;
-} */
 
 h1{
     text-align: center;
@@ -70,8 +63,12 @@ h1{
     height: 40px;
     border-radius: 50%;
 }
+.avatar_img > img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
 .post_title{
-    margin-left: 10px;
     margin-top: 6px;
 }
 
@@ -80,3 +77,34 @@ h1{
     height: auto;
     margin-bottom: 10px;
 }
+
+#user_post_info{
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    background-color: #93d4de3d;
+}
+
+.which_form{
+    display: flex;
+    font-size: 14px;
+    margin-left: 10px;
+    padding-top: 18px;
+}
+.devider{
+    margin: 0 10px;
+}
+#image_post_btn,
+#video_post_btn,
+#cancel_post_btn{
+    color: #17a2b8;
+    cursor: pointer;
+}
+#image_post,
+#video_post{
+    display: none;
+    padding: 6px;
+    background-color: #93d4de3d;
+}
+
+

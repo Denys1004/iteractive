@@ -72,7 +72,7 @@ class UserManager(models.Manager):
         return errors
 
 class PostManager(models.Manager):
-    def create_post(self, postData, fileData, poster):
+    def create_image_post(self, postData, fileData, poster_obj):
         # manage name of the file to prevent conflict
         file_name = fileData['files'].name   #saving filename .name is like .png
         new_name = f"{file_name.split('.')[0]}-{uuid.uuid4().hex}.{file_name.split('.')[-1]}" # adding random string to the name
@@ -80,18 +80,9 @@ class PostManager(models.Manager):
         return self.create(
             title = postData['title'], 
             content = postData['content'],
-            poster = poster,
+            poster = poster_obj,
             post_image = fileData['files']
         )
-
-    def job_validator(self, postData):												
-        errors = {}																										
-        # NAME VALIDATION 	
-        if len(postData['description']) < 4:											
-            errors['description'] = 'A job must consist of at least 3 characters'
-        if len(postData['location']) == 0:											
-            errors['location'] = 'Location must be provided.'	
-        return errors
 
 class User(models.Model):
     first_name = models.CharField(max_length = 255)										
