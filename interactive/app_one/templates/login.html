@@ -1,48 +1,53 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <!-- JQuery -->
-    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script defer src="{% static 'js/main.js' %}"></script>
-    <title>Login</title>
+    {% include 'head.html' %}
+    <title>Dashboard</title>
 </head>
 <body>
-    {% include 'navbar.html' %}
+    <div class="outer_container">
+        {% include 'search.html' %}
+
+        <div class="inner_container">
+            <div class="inner">
+                {% include 'navbar.html' %}
     
-    <div class="page_container">
-        <h3>Login</h3>
-        {% if messages %}                                                                      				 	
-        <ul class="messages">                                           								
-            {% for message in messages %}                                       							
-                <li class="errors">{{ message }}</li>       									
-            {% endfor %}                                                								
-        </ul>                                                      									
-        {% endif %} 
-        <form action="/login" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" name="email" class="form-control" id="email">
+                <div class="main_container">
+                    <div class="page_title_container">
+                        <h4>Sign In</h4>
+                    </div>
+                    <div class="signin_container">
+                        {% if messages %}                                                                      				 	
+                        <ul class="messages">                                           								
+                            {% for message in messages %}                                       							
+                                <li class="errors">{{ message }}</li>       									
+                            {% endfor %}                                                								
+                        </ul>                                                      									
+                        {% endif %} 
+                        <form action="/login" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="text" name="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" name="password" class="form-control" id="password">
+                            </div>
+                            <div class="button_form">
+                                <button class="mybutton btn btn-info">Sign In</button>
+                            </div>
+                        </form>
+                        <br>
+                        <p>New User? You may sign up <a class="green" class='mybutton' href="/register">here...</a></p>
+                    </div>
+
+                </div>
+    
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" class="form-control" id="password">
-            </div>
-            <div class="button_form">
-                <button class="mybutton btn btn-info">Login</button>
-            </div>
-        </form>
-        <br>
-        <p>New User? You may sign up <a class='mybutton' href="/register">here...</a></p>
+        </div>
+
     </div>
 </body>
 </html>

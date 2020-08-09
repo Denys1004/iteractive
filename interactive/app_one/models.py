@@ -78,7 +78,6 @@ class PostManager(models.Manager):
         new_name = f"{file_name.split('.')[0]}-{uuid.uuid4().hex}.{file_name.split('.')[-1]}" # adding random string to the name
         fileData['files'].name = new_name    # reassigning the existing name to new name
         return self.create(
-            title = postData['title'], 
             content = postData['content'],
             poster = poster_obj,
             post_image = fileData['files']
@@ -104,7 +103,7 @@ class User(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 class Post(models.Model):
-    title = models.CharField(max_length = 255, null = True)
+    title = models.CharField(max_length = 255, null = True, blank=True)
     content = models.TextField()
     post_image = models.ImageField(upload_to='post_images', default=None, blank=True, null = True)
     poster = models.ForeignKey(User, related_name = 'poster', on_delete=models.CASCADE)

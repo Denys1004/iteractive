@@ -2,55 +2,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <!-- JQuery -->
-    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script defer src="{% static 'js/main.js' %}"></script>
+    {% include 'head.html' %}
     <title>Dashboard</title>
 </head>
 <body>
-    <header>
-        {% include 'navbar.html' %}
-    </header>
+    <div class="outer_container">
+        {% include 'search.html' %}
 
-    {% for image in post_images %}
-    <img src="{{ MEDIA_URL }}{{ image }}" alt="">
-    {% endfor %}
-    <div class="page_container">
-        <h1>Dashboard Page</h1>
-            {% for post in posts %}
-            <div class="post_container jumbotron jumbotron-fluid">
-                <div class="post_header">
-                    <div class="avatar">
-                        <img src="{{ MEDIA_URL }}{{ post.poster.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
-                    </div>
-                    <h3 class="post_title">{{ post.title }}</h3>
-                </div>
-                <div class="post_image_container">
-                    <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="{{post_image.name}}">
-                </div>
-                <p>{{ post.content }}</p>
-                <div class="one_video_container">
-                    {% for i in post.videos.all %}			
-                        {% video i.video '820x520' %}		
-                    {% endfor %}
-                </div>
-            </div>
-            {% endfor %}
-    </div>
+        <div class="inner_container">
+            <div class="inner">
+                {% include 'navbar.html' %}
     
+                <div class="main_container">
+                    <div class="page_title_container">
+                        <h4>Dashboard Page</h4>
+                    </div>
+    
+                    <div class="all_posts_container">
+                        {% for post in posts %}
+                            <div class="post_container">
+                                <div class="post_header">
+                                    <div class="avatar">
+                                        <img src="{{ MEDIA_URL }}{{ post.poster.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
+                                    </div>
+                                    <div class="poster">
+                                        <p class="poster_name">{{ post.poster.first_name }} {{ post.poster.last_name }}</p>
+                                        <small>{{ post.created_at }}</small>
+                                    </div>
+                                    
+                                </div>
+                                <p class="post_content">{{ post.content }}</p>
 
+                                {% for i in post.videos.all %}
+                                <div class="one_video_container">			
+                                    {% video i.video '520x300' %}		
+                                </div>
+                                {% endfor %}
+                                
+                                <div class="post_image_container">
+                                    <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="{{post_image.name}}">
+                                </div>
+                                
+                            </div>
+                        {% endfor %}
+                    </div>
+    
+                </div>
+    
+                {% include 'sidebar.html' %}
+            </div>
+        </div>
 
+    </div>
 </body>
 </html>
-
-
-

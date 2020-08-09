@@ -1,28 +1,25 @@
-<div class="nav-container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-        <div id="menu_container" class="collapse navbar-collapse" >
-            <ul class="menu_list_container navbar-nav mr-auto">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
-                <!-- <li><a href="/dashboard">Dashboard</a></li> -->
+<div id="navigation">
+    <nav>
+        <ul>
+            {% if request.session.user_id != null %}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile">My Profile</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile">Messages</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile">Images</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile">Music</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile">Video</a></li>
+            <li>
                 {% if request.session.user_id != null %}
-                <li class="nav-item"><a class="nav-link" href="/user/{{ request.session.user_id }}/profile">My Profile</a></li>
+                <a href="/logout">Logout</a>
+                {% else %}
+                <a href="/login">Login</a>
                 {% endif %}
-                <li class="nav-item">
-                    {% if request.session.user_id != null %}
-                    <a class="nav-link login_a" href="/logout">Logout</a>
-                    {% else %}
-                    <a class="nav-link login_a" href="/login">Login</a>
-                    {% endif %}
-                </li>  
-            </ul>
-        </div>
+            </li>  
+            {% endif %}
 
-        <div id="logo_container">
-            <a href="/">
-                <ion-icon name="hammer"></ion-icon>
-            </a>
-        </div>
+        </ul>
     </nav>
 </div>
+
+
+

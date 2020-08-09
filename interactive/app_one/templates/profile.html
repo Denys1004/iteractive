@@ -2,118 +2,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <!-- JQuery -->
-    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script defer src="{% static 'js/main.js' %}"></script>
-    <title>Video</title>
+    {% include 'head.html' %}
+    <title>Dashboard</title>
 </head>
 <body>
-    <header>
-        {% include 'navbar.html' %}
-    </header>
-    <h1>Profile Page</h1>
+    <div class="outer_container">
+        {% include 'search.html' %}
 
+        <div class="inner_container">
+            <div class="inner">
+                {% include 'navbar.html' %}
     
-    <div class="page_container">
-        <div class="avatar_img">
-            <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
-        </div>
-        <h4>{{ user.first_name }} {{ user.last_name }}</h4>
-        
-        <div id="user_post_info">
-            <div class="avatar">
-                <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
-            </div>
-            <div class="which_form">
-                <p id ='image_post_btn'>Add Image</p>
-                <p class="devider"> | </p>
-                <p id ='video_post_btn'>Add Video</p>
-                <p class="devider"> | </p>
-                <p id ='cancel_post_btn'>Cancel</p>
-            </div>
-        </div>
-
-        <!-- image_post -->
-        <div id="image_post">
-            <form action="/create_new_image_post" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" class="form-control" id="title">
-                </div>
-                <div class="form-group">
-                    <label for="files">Files:</label>
-                    <input type="file" id="files" class="form-control" name="files">
-                </div>
-                <div class="form-group">
-                    <label for="content">Description:</label>
-                    <input type="text" name="content" class="form-control" id="content" >
-                </div>
-                <button class="btn btn-info">Post</button>
-            </form>
-        </div>
-        <!-- video_post -->
-        <div id="video_post">
-            <form action="/create_new_video_post" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" class="form-control" id="title">
-                </div>
-                <div class="form-group">
-                    <label for="content">Description:</label>
-                    <input type="text" name="content" class="form-control" id="content" >
-                </div>
-                <div class="form-group">
-                    <label for="video_item">Video URL:</label>
-                    <input type="url" name="video_item" class="form-control" id="video_item">
-                </div>
-                <button class="btn btn-info">Post</button>
-            </form>
-        </div>
-
-
+                <div class="main_container">
+                    <div class="page_title_container">
+                        <h4>My Profile</h4>
+                    </div>
     
-        <br>
-        
-        {% for post in user_posts %}
-        <div class="post_container jumbotron jumbotron-fluid">
-            <div class="post_header">
-                <div class="avatar">
-                    <img class="avatar_big" src="{{ MEDIA_URL }}{{ post.poster.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
-                </div>
-                <small class="ml-2">{{ post.created_at }}</small>
+                    <div class="profile_page_container">
+                        <div class="avatar_img">
+                            <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
+                            <div class="profile_info">
+                                <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+                                <p>Birthday: {{ user.birth_date}}</p>
+                                <p>Email: {{ user.email}}</p>
+                                <p>Phone: {{ user.phone_num}}</p>
+                            </div>
+                        </div>
+                        <div class="about_user">
+                            <h5>About:</h5>
+                            {% if len.user.about > 0 %}
+                            <p>{{ user.about}}</p>
+                            {% else %}
+                            <p class="no_provided">no provided information</p>
+                            {% endif %}
+                        </div>
+                        
+                        
+                        <div id="user_post_info">
+                            <div class="avatar">
+                                <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
+                            </div>
+                            <div class="which_form">
+                                <p id ='image_post_btn'>Add Image</p>
+                                <p class="devider"> | </p>
+                                <p id ='video_post_btn'>Add Video</p>
+                                <p class="devider"> | </p>
+                                <p id ='cancel_post_btn'>Cancel</p>
+                            </div>
+                        </div>
                 
-            </div>
-            <h3 class="post_title">{{ post.title }}</h3>
-
-
-            <div class="post_image_container">
-                <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="{{post_image.name}}">
-            </div>
-            <p>{{ post.content }}</p>
-            <div class="one_video_container">
-                {% for i in post.videos.all %}			
-                    {% video i.video '350x200' %}		
-                {% endfor %}
+                        <!-- image_post -->
+                        <div id="image_post">
+                            <form action="/create_new_image_post" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="content">Description:</label>
+                                    <input type="text" name="content" class="form-control" id="content" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="files">Files:</label>
+                                    <input type="file" id="files" class="form-control" name="files">
+                                </div>
+                                <button class="btn btn-info">Post</button>
+                            </form>
+                        </div>
+                        <!-- video_post -->
+                        <div id="video_post">
+                            <form action="/create_new_video_post" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="content">Description:</label>
+                                    <input type="text" name="content" class="form-control" id="content" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="video_item">Video URL:</label>
+                                    <input type="url" name="video_item" class="form-control" id="video_item">
+                                </div>
+                                <button class="btn btn-info">Post</button>
+                            </form>
+                        </div>
+                
+                
+                    
+                        <br>
+                        
+                        {% for post in user_posts %}
+                        <div class="post_container jumbotron jumbotron-fluid">
+                            <div class="post_header">
+                                <div class="avatar">
+                                    <img class="avatar_big" src="{{ MEDIA_URL }}{{ post.poster.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
+                                </div>
+                                <small class="ml-2">{{ post.created_at }}</small>
+                                
+                            </div>
+                            <!-- <h3 class="post_title">{{ post.title }}</h3> -->
+                            <p>{{ post.content }}</p>
+                            <div class="one_video_container">
+                                {% for i in post.videos.all %}			
+                                    {% video i.video '520x300' %}		
+                                {% endfor %}
+                            </div>
+                            <div class="post_image_container">
+                                <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="{{post_image.name}}">
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+    
+                </div>
+    
+                {% include 'sidebar.html' %}
             </div>
         </div>
-        {% endfor %}
+
     </div>
-    
-
-
 </body>
 </html>
-
-
-

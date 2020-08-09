@@ -16,6 +16,7 @@ def login(request):
 
 def dashboard(request):
     context = {
+        'curr_user': User.objects.get(id = request.session['user_id']),
         'posts': Post.objects.all().order_by('-created_at'),
         'videos': Video_item.objects.all()
     }
@@ -25,6 +26,7 @@ def user_profile(request, user_id):
     cur_user = User.objects.get(id=user_id)
     user_posts = cur_user.poster.all().order_by('-created_at')
     context = {
+        'curr_user':User.objects.get(id=request.session['user_id']),
         'user':cur_user,
         'user_posts':user_posts
     }
@@ -101,7 +103,7 @@ def create_new_video_post(request):
         return redirect('/dashboard')
     else:
         poster = User.objects.get(id = request.session['user_id'])
-        new_post = Post.objects.create(title = request.POST['title'], content = request.POST['content'], poster = poster)
+        new_post = Post.objects.create(content = request.POST['content'], poster = poster)
         new_video = Video_item.objects.create(video = request.POST['video_item'], post = new_post, video_poster = poster )
         return redirect('/dashboard')
 
