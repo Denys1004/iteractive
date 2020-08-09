@@ -3,18 +3,25 @@ import re
 from datetime import datetime
 import bcrypt
 from embed_video.fields import EmbedVideoField
-
+import uuid
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')							
 							
 class UserManager(models.Manager):
-    def register(self, postData):
+    def register(self, postData, filedata):
         pw_hash = bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt()).decode() # create the hash 
+
+        # manage name of the file to prevent conflict
+        file_name = filedata['avatar'].name   #saving filename .name is like .png
+        new_name = f"{file_name.split('.')[0]}-{uuid.uuid4().hex}.{file_name.split('.')[-1]}" # adding random string to the name
+        filedata['avatar'].name = new_name    # reassigning the existing name to new name
+
         return self.create(
             first_name=postData['first_name'], 
             last_name=postData['last_name'], 
             birth_date=postData['birth_date'], 
-            email=postData['email'], 
+            email=postData['email'],
+            avatar = filedata['avatar'], 
             password=pw_hash
         )
     # Checking login 
@@ -65,6 +72,18 @@ class UserManager(models.Manager):
         return errors
 
 class PostManager(models.Manager):
+    def create_post(self, postData, fileData, poster):
+        # manage name of the file to prevent conflict
+        file_name = fileData['files'].name   #saving filename .name is like .png
+        new_name = f"{file_name.split('.')[0]}-{uuid.uuid4().hex}.{file_name.split('.')[-1]}" # adding random string to the name
+        fileData['files'].name = new_name    # reassigning the existing name to new name
+        return self.create(
+            title = postData['title'], 
+            content = postData['content'],
+            poster = poster,
+            post_image = fileData['files']
+        )
+
     def job_validator(self, postData):												
         errors = {}																										
         # NAME VALIDATION 	
@@ -80,7 +99,7 @@ class User(models.Model):
     nickname = 	models.CharField(max_length = 50, blank=True, null = True)		
     initials = 	models.CharField(max_length = 10, blank=True, null = True)						
     birth_date = models.DateTimeField()	
-    # avatar = 										
+    avatar = models.ImageField(upload_to='avatars', default=None, blank=True, null = True)	#upload to avatars is a directory inside media directory, it will go like media/avatars								
     email = models.TextField()
     phone_num = models.IntegerField(blank=True, null = True)
     about = models.TextField(blank=True, null = True)
@@ -96,15 +115,15 @@ class User(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length = 255, null = True)
     content = models.TextField()
-    # images = 
+    post_image = models.ImageField(upload_to='post_images', default=None, blank=True, null = True)
     poster = models.ForeignKey(User, related_name = 'poster', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)  								
     updated_at = models.DateTimeField(auto_now = True)	
     objects = PostManager()
-    #categories
-    #comments
+
     def __str__(self):
         return self.title
+
 
 class Category(models.Model):
     name = models.CharField(max_length = 255)
@@ -131,3 +150,4 @@ class Video_item(models.Model):
     post = models.ForeignKey(Post, related_name = 'videos', on_delete=models.CASCADE, blank=True, null = True) 
     created_at = models.DateTimeField(auto_now_add = True)  								
     updated_at = models.DateTimeField(auto_now = True)
+

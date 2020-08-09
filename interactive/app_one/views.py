@@ -19,9 +19,16 @@ def dashboard(request):
         'posts': Post.objects.all().order_by('-created_at'),
         'videos': Video_item.objects.all()
     }
-    return render(request, 'video.html', context)
+    return render(request, 'dashboard.html', context)
 
-
+def user_profile(request, user_id):
+    cur_user = User.objects.get(id=user_id)
+    user_posts = cur_user.poster.all().order_by('-created_at')
+    context = {
+        'user':cur_user,
+        'user_posts':user_posts
+    }
+    return render(request, 'profile.html', context)
 
 # REGISTRATION
 def create_user(request):
@@ -38,7 +45,7 @@ def create_user(request):
             for value in errors.values():											
                 messages.error(request, value)											
             return redirect('/register')
-        new_user = User.objects.register(request.POST)
+        new_user = User.objects.register(request.POST, request.FILES)
         request.session.clear()
         request.session['user_id'] = new_user.id
         first_i = new_user.first_name[0]
@@ -82,8 +89,10 @@ def create_new_post(request):
 
     else:
         poster = User.objects.get(id = request.session['user_id'])
-        this_post = Post.objects.create(title = request.POST['title'], content = request.POST['content'],poster = poster)
-        this_video = Video_item.objects.create(video = request.POST['video_item'], video_poster = poster, post = this_post)
-        messages.success(request, "Post Successfully Created!")
+        new_post = Post.objects.create_post(request.POST, request.FILES, poster)
         return redirect('/dashboard')
 
+# LOGOUT
+def logout(request):
+    request.session.clear()
+    return redirect("/login")

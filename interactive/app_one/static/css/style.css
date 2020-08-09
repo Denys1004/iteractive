@@ -6,7 +6,7 @@
 }
 
 body{
-    background-color: rgb(245, 243, 172);
+    background-color: rgb(225, 222, 224);
 }
 
 
@@ -32,7 +32,7 @@ nav{
     max-width: 900px;
     margin: auto;
     padding: 20px;
-    background-color: rgb(42, 132, 165);
+    background-color: rgb(255, 255, 255);
 }
 .video_container{
     display: flex;
@@ -46,4 +46,37 @@ nav{
     height: auto;
     /* display: inline-block; */
     margin: 20px;
+}
+
+/* .avatar{
+    width: 40px;
+    height: 40px;
+    border: 50%;
+} */
+
+h1{
+    text-align: center;
+}
+.post_container{
+    padding: 20px;
+}
+.post_header{
+    display: flex;
+    align-items: center;
+}
+
+.avatar > img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.post_title{
+    margin-left: 10px;
+    margin-top: 6px;
+}
+
+.post_image_container img{
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
 }

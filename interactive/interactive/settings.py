@@ -56,7 +56,7 @@ ROOT_URLCONF = 'interactive.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS' : [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +68,9 @@ TEMPLATES = [
         },
     },
 ]
+TEMPLATES[0]["OPTIONS"]["context_processors"].append('django.template.context_processors.media')
+MEDIA_URL = '/media/'  
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 WSGI_APPLICATION = 'interactive.wsgi.application'
 

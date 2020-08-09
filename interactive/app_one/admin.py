@@ -22,8 +22,7 @@ class CommentAdmin(admin.ModelAdmin):
 admin.site.register(Comment, PostAdmin)
 
 
-
-
+# Video
 class MyModelAdmin(AdminVideoMixin, admin.ModelAdmin):
     pass
 

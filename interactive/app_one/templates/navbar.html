@@ -1,18 +1,19 @@
 <div class="nav-container">
-    <nav>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-        <div id="menu_container">
-            <ul class="menu_list_container">
-                <li><a class="" href="/">Home</a></li>
+        <div id="menu_container" class="collapse navbar-collapse" >
+            <ul class="menu_list_container navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
                 <!-- <li><a href="/dashboard">Dashboard</a></li> -->
                 {% if request.session.user_id != null %}
-                <li><a href="/user/{{ request.session.user_id }}/profile">My Profile</a></li>
+                <li class="nav-item"><a class="nav-link" href="/user/{{ request.session.user_id }}/profile">My Profile</a></li>
                 {% endif %}
-                <li>
+                <li class="nav-item">
                     {% if request.session.user_id != null %}
-                    <a class="login_a" href="/logout">Logout</a>
+                    <a class="nav-link login_a" href="/logout">Logout</a>
                     {% else %}
-                    <a class="login_a" href="/login">Login</a>
+                    <a class="nav-link login_a" href="/login">Login</a>
                     {% endif %}
                 </li>  
             </ul>
@@ -21,42 +22,7 @@
         <div id="logo_container">
             <a href="/">
                 <ion-icon name="hammer"></ion-icon>
-                <h4>Pros</h4>
             </a>
         </div>
-
-        <!-- <div id="burger_container">
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
-            <ul class="nav-links">
-                
-                {% if request.session.user_id != null %}
-                <div id="initials_logo">
-                    <a href="/user/{{ request.session.user_id }}/profile">{{ request.session.initials }}</a>
-                </div>
-                {% endif %}
-
-                <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                {% if request.session.user_id != null %}
-                <li><a href="/user/{{ request.session.user_id }}/profile">My Profile</a></li>
-                <li><a href="/create_new_job">Create job</a></li>
-                    {% if request.session.user_id == 1 %}
-                    <li><a href="/all_users">All Users</a></li>
-                    {% endif %}
-                {% endif %}
-                <li>
-                    {% if request.session.user_id != null %}
-                    <a href="/logout">Logout</a>
-                    {% else %}
-                    <a href="/login">Login</a>
-                    {% endif %}
-                </li>
-            </ul>
-        </div> -->
-
     </nav>
 </div>
