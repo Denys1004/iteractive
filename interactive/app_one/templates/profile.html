@@ -105,23 +105,47 @@
                         <br>
                         
                         {% for post in user_posts %}
-                        <div class="post_container jumbotron jumbotron-fluid">
+                        <div class="post_container">
                             <div class="post_header">
                                 <div class="avatar">
-                                    <img class="avatar_big" src="{{ MEDIA_URL }}{{ post.poster.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
+                                    <img src="{{ MEDIA_URL }}{{ post.poster.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
                                 </div>
-                                <small class="ml-2">{{ post.created_at }}</small>
+                                <div class="poster">
+                                    <p class="poster_name">{{ post.poster.first_name }} {{ post.poster.last_name }}</p>
+                                    <small>{{ post.created_at }}</small>
+                                </div>
                                 
                             </div>
-                            <!-- <h3 class="post_title">{{ post.title }}</h3> -->
-                            <p>{{ post.content }}</p>
-                            <div class="one_video_container">
-                                {% for i in post.videos.all %}			
-                                    {% video i.video '520x300' %}		
-                                {% endfor %}
+                            {% if post.title %}
+                                <h3 class="post_title">{{ post.title }}</h3>
+                            {% endif %}
+                            <p class="post_content">{{ post.content }}</p>
+
+                            <!-- if post has video, display this: -->
+                            {% for i in post.videos.all %}
+                            <div class="one_video_container">			
+                                {% video i.video '520x300' %}		
                             </div>
+                            {% endfor %}
+
+                            <!-- if post has an image, display this: -->
+                            {% if post.post_image %}
                             <div class="post_image_container">
-                                <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="{{post_image.name}}">
+                                <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="">
+                            </div>
+                            {% endif %}
+                 
+
+                            <div class="comment_container">
+                                <form action="/add_coment/post/{{ post.content }}" id="form_addComment">
+                                    <div class="comment_input">
+                                        <div class="add_comment_input">
+                                            <input type="text" name="comment" placeholder="write a comment">
+                                        </div>
+                                        <button class="btn btn-outline-info btn_add" >Add</button>
+                                    </div>
+
+                                </form>
                             </div>
                         </div>
                         {% endfor %}

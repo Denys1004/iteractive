@@ -108,7 +108,18 @@ def create_new_video_post(request):
         return redirect('/dashboard')
 
 
-
+# CREATE NEW Text POST
+def create_new_text_post(request):
+    if request.method == "GET":
+        context = {
+            'videos': Video_item.objects.all(),
+            'cur_user': User.objects.get(id = request.session['user_id']),
+        }
+        return redirect('/dashboard')
+    else:
+        poster = User.objects.get(id = request.session['user_id'])
+        new_post = Post.objects.create(title=request.POST['title'], content = request.POST['content'], poster = poster)
+        return redirect('/dashboard')
 
 
 

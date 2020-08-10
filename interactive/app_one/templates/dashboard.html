@@ -31,12 +31,12 @@
                                     </div>
                                     
                                 </div>
-                                <!-- <h3 class="post_title">{{ post.title }}</h3> -->
+                                {% if post.title %}
+                                    <h3 class="post_title">{{ post.title }}</h3>
+                                {% endif %}
                                 <p class="post_content">{{ post.content }}</p>
-                                <!-- <small>{{ post.id }}</small> -->
 
-                                <!-- if post has an video, display this: -->
-
+                                <!-- if post has video, display this: -->
                                 {% for i in post.videos.all %}
                                 <div class="one_video_container">			
                                     {% video i.video '520x300' %}		
@@ -44,15 +44,20 @@
                                 {% endfor %}
 
                                 <!-- if post has an image, display this: -->
+                                {% if post.post_image %}
                                 <div class="post_image_container">
                                     <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="">
                                 </div>
-
+                                {% endif %}
+                     
 
                                 <div class="comment_container">
                                     <form action="/add_coment/post/{{ post.content }}" id="form_addComment">
-                                        <div class="form-group">
-                                            <input type="text" name="comment" class="form-control" placeholder="write a comment">
+                                        <div class="comment_input">
+                                            <div class="add_comment_input">
+                                                <input type="text" name="comment" placeholder="write a comment">
+                                            </div>
+                                            <button class="btn btn-outline-info btn_add" >Add</button>
                                         </div>
                                     </form>
                                 </div>

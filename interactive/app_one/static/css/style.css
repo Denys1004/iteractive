@@ -74,6 +74,10 @@ li {
   color: white;
 }
 
+#search_bar_container #search_bar .logo_container .logotip {
+  font-weight: 900;
+}
+
 #search_bar_container #search_bar .current_user_container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -179,9 +183,23 @@ li {
   margin-top: 0;
 }
 
+.post_container .post_title {
+  font-size: 18px;
+  margin-top: 6px;
+  margin-bottom: -8px;
+}
+
+.post_container .post_content {
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
 .post_container .post_image_container {
   margin: 0;
   padding: 0;
+  margin-bottom: 7px;
 }
 
 .post_container .post_image_container img {
@@ -191,11 +209,34 @@ li {
   padding: 0;
 }
 
-.post_container .post_content {
-  margin-top: 5px;
-  margin-bottom: 0;
+.post_container .comment_container form .comment_input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.post_container .comment_container form .comment_input .add_comment_input input {
+  outline: none;
+  border: none;
+  width: 473px;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.post_container .comment_container form .comment_input .btn_add {
   padding: 0;
-  font-size: 14px;
+  font-size: 12px;
+  padding: 2px 6px;
+  letter-spacing: 0.4px;
+  margin-top: 1px;
 }
 
 .post_container:last-child {
@@ -274,6 +315,7 @@ li {
       -ms-flex-align: center;
           align-items: center;
   padding: 6px;
+  border-radius: 6px;
   background-color: #93d4de3d;
 }
 
