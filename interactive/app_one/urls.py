@@ -11,5 +11,10 @@ urlpatterns = [
     path('create_new_image_post', views.create_new_image_post),
     path('create_new_video_post', views.create_new_video_post),
     path('user/<int:user_id>/profile', views.user_profile),
+
+
+    path('add_comment/post/<int:post_id>', views.add_comment),
+
+
     path('logout', views.logout)
 ]

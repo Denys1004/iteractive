@@ -9,7 +9,7 @@ from django.forms.models import model_to_dict # Need for sortation
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    return redirect('/login')
 
 def login(request):
     return render(request, 'login.html')
@@ -123,9 +123,11 @@ def create_new_text_post(request):
 
 
 
-
-
-
+def add_comment(request, post_id):
+    needed_post = Post.objects.get(id = post_id)
+    comment_poster = User.objects.get(id = request.session['user_id'])
+    Comment.objects.create(comment=request.POST['comment'], poster = comment_poster, post = needed_post)
+    return redirect('/dashboard')
 
 
 

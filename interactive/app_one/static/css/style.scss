@@ -4,7 +4,10 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+p{
+    margin-top: 0;
+    margin-bottom: 0;
+}
 li{
     list-style: none;
 }
@@ -198,6 +201,42 @@ li{
                     margin-top: 1px;
             
                 }
+            }
+        }
+        .display_comments_container{
+            padding: 5px 10px;
+            font-size: 12px;
+            .display_comment{
+                display: flex;
+                align-items: flex-start;
+                margin-top: 20px;
+                .comment_poster{
+                    margin-right: 10px;
+                    img{
+                        width: 26px;
+                        height: 26px;
+                        border-radius: 50%;
+                    }
+                }
+                .comment_content{
+                    margin-bottom: 0;
+                    .comment_poster{
+                        color: #17a2b8;
+                        margin-bottom: 0;
+                        padding-bottom: 0;
+                    }
+                    .comment_text{
+                        font-style: italic;
+                        margin-bottom: 0;
+                    }
+                    small{
+                        color: grey;
+                    }
+                }
+                // p{
+                //     margin-bottom: 0;
+                //     color: grey;
+                // }
             }
         }
     }

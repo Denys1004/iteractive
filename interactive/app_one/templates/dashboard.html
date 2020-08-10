@@ -52,7 +52,8 @@
                      
 
                                 <div class="comment_container">
-                                    <form action="/add_coment/post/{{ post.content }}" id="form_addComment">
+                                    <form action="/add_comment/post/{{ post.id }}" id="form_addComment" method="POST">
+                                        {% csrf_token %}
                                         <div class="comment_input">
                                             <div class="add_comment_input">
                                                 <input type="text" name="comment" placeholder="write a comment">
@@ -60,6 +61,21 @@
                                             <button class="btn btn-outline-info btn_add" >Add</button>
                                         </div>
                                     </form>
+                                    <div class="display_comments_container">
+                                        {% for comment in post.comments.all %}
+                                        <div class="display_comment">
+                                            <div class="comment_poster">
+                                                <img src="{{ MEDIA_URL }}{{ comment.poster.avatar }}" alt="">
+                                            </div>
+                                            <div class="comment_content">
+                                                <p class="comment_poster">{{ comment.poster.first_name }} {{ comment.poster.last_name }}</p>
+                                                <p class="comment_text">{{ comment.comment }}</p>
+                                                <small>{{ comment.created_at }}</small>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
