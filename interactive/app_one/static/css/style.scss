@@ -218,6 +218,7 @@ li{
                         width: 26px;
                         height: 26px;
                         border-radius: 50%;
+                        object-fit: cover;
                     }
                 }
                 .comment_content{
@@ -332,7 +333,6 @@ li{
     display: flex;
     font-size: 14px;
     margin-left: 10px;
-    padding-top: 18px;
 }
 .devider{
     margin: 0 10px;

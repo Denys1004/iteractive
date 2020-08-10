@@ -273,6 +273,8 @@ li {
   width: 26px;
   height: 26px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .post_container .comment_container .display_comments_container .display_comment .comment_content {
@@ -399,7 +401,6 @@ li {
   display: flex;
   font-size: 14px;
   margin-left: 10px;
-  padding-top: 18px;
 }
 
 .devider {

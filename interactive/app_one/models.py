@@ -112,7 +112,7 @@ class Post(models.Model):
     objects = PostManager()
 
     def __str__(self):
-        return self.title if self.title else 'no-title'
+        return self.title if self.title else  'no-title, post of:  ' + self.poster.first_name + ' ' + self.poster.last_name
 
 
 class Category(models.Model):

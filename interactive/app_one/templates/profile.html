@@ -15,7 +15,7 @@
     
                 <div class="main_container">
                     <div class="page_title_container">
-                        <h4>My Profile</h4>
+                        <h4>{{user.first_name}}'s profile</h4>
                     </div>
     
                     <div class="profile_page_container">
@@ -36,11 +36,11 @@
                             {% if len.user.about > 0 %}
                             <p>{{ user.about}}</p>
                             {% else %}
-                            <p class="no_provided">no provided information</p>
+                            <p class="no_provided">No provided information</p>
                             {% endif %}
                         </div>
                         
-                        
+                        {% if user.id == request.session.user_id %}
                         <div id="user_post_info">
                             <div class="avatar">
                                 <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
@@ -102,11 +102,17 @@
                                 <button class="btn btn-info">Post</button>
                             </form>
                         </div>
+                        {% endif %}
                 
                 
                     
                         <br>
+                        <h5 class="text-center">All {{user.first_name}}'s Posts</h5>
                         
+                        
+                        
+                        
+      
                         {% for post in user_posts %}
                         <div class="post_container">
                             <div class="post_header">
@@ -137,7 +143,7 @@
                                 <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="">
                             </div>
                             {% endif %}
-                 
+                
 
                             <div class="comment_container">
                                 <form action="/add_coment/post/{{ post.content }}" id="form_addComment">
@@ -152,6 +158,8 @@
                             </div>
                         </div>
                         {% endfor %}
+
+                        
                     </div>
     
                 </div>
