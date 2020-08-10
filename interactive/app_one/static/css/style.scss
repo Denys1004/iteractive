@@ -212,14 +212,17 @@ li{
                 display: flex;
                 align-items: flex-start;
                 margin-top: 20px;
-                .comment_poster{
+                .comment_poster_photo{
                     margin-right: 10px;
-                    img{
-                        width: 26px;
-                        height: 26px;
-                        border-radius: 50%;
-                        object-fit: cover;
+                    a{
+                        img{
+                            width: 26px;
+                            height: 26px;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
                     }
+
                 }
                 .comment_content{
                     margin-bottom: 0;
@@ -247,12 +250,18 @@ li{
 .post_container:last-child{
     margin-bottom: 20px;
 }
-.avatar > img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+.avatar{
+    a{
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
 }
+
+
 
 
 #sidebar_container{

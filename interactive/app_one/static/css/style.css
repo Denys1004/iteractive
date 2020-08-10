@@ -265,11 +265,11 @@ li {
   margin-top: 20px;
 }
 
-.post_container .comment_container .display_comments_container .display_comment .comment_poster {
+.post_container .comment_container .display_comments_container .display_comment .comment_poster_photo {
   margin-right: 10px;
 }
 
-.post_container .comment_container .display_comments_container .display_comment .comment_poster img {
+.post_container .comment_container .display_comments_container .display_comment .comment_poster_photo a img {
   width: 26px;
   height: 26px;
   border-radius: 50%;
@@ -300,7 +300,7 @@ li {
   margin-bottom: 20px;
 }
 
-.avatar > img {
+.avatar a img {
   width: 40px;
   height: 40px;
   border-radius: 50%;

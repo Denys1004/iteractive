@@ -22,3 +22,17 @@ $('#cancel_post_btn').click(function(){
     $('#text_post').hide();
     $('#video_post').hide();
 })
+
+
+$('.show_comments').click(function(){
+    let pContent=$(this).html()
+
+    if(pContent == 'Hide comments'){
+        $(this).html('Show comments')
+        $('.display_comment').hide()
+    }
+    else{
+        $(this).html('Hide comments')
+        $('.display_comment').show()
+    }
+})

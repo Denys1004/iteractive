@@ -23,10 +23,10 @@
                             <div class="post_container">
                                 <div class="post_header">
                                     <div class="avatar">
-                                        <img src="{{ MEDIA_URL }}{{ post.poster.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
+                                        <a href="/user/{{ post.poster.id }}/profile" ><img src="{{ MEDIA_URL }}{{ post.poster.avatar }}" alt="{{ post.poster.first_name}}'s avatar"></a>
                                     </div>
                                     <div class="poster">
-                                        <p class="poster_name">{{ post.poster.first_name }} {{ post.poster.last_name }}</p>
+                                        <a href="/user/{{ post.poster.id }}/profile" class="poster_name">{{ post.poster.first_name }} {{ post.poster.last_name }}</a>
                                         <small>{{ post.created_at }}</small>
                                     </div>
                                     
@@ -64,11 +64,11 @@
                                     <div class="display_comments_container">
                                         {% for comment in post.comments.all %}
                                         <div class="display_comment">
-                                            <div class="comment_poster">
-                                                <img src="{{ MEDIA_URL }}{{ comment.poster.avatar }}" alt="">
+                                            <div class="comment_poster_photo">
+                                                <a href="/user/{{ comment.poster.id }}/profile"><img src="{{ MEDIA_URL }}{{ comment.poster.avatar }}" alt=""></a>
                                             </div>
                                             <div class="comment_content">
-                                                <p class="comment_poster">{{ comment.poster.first_name }} {{ comment.poster.last_name }}</p>
+                                                <a class="comment_poster" href="">{{ comment.poster.first_name }} {{ comment.poster.last_name }}</a>
                                                 <p class="comment_text">{{ comment.comment }}</p>
                                                 <small>{{ comment.created_at }}</small>
                                             </div>
