@@ -142,11 +142,22 @@ li{
     .post_header{
         display: flex;
         align-items: center;
+        .avatar{
+            a{
+                img{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+        }
         .poster{
-            margin-left: 10px; 
+            margin-left: 10px;
+            display: flex;
+            flex-direction: column;
             .poster_name{
                 font-size: 12px;
-                margin-bottom: -6px;
             }
             small{
                 font-size: 12px;
@@ -177,6 +188,9 @@ li{
             padding: 0;
         }
     }
+
+
+    
     .comment_container{
         form{
             .comment_input{
@@ -205,7 +219,14 @@ li{
                 }
             }
         }
+        .show_comments{
+            font-size: 12px;
+            margin-top: 10px;
+            color: #17a2b8;
+            cursor: pointer;
+        }
         .display_comments_container{
+            display: none;
             padding: 5px 10px;
             font-size: 12px;
             .display_comment{
@@ -250,16 +271,7 @@ li{
 .post_container:last-child{
     margin-bottom: 20px;
 }
-.avatar{
-    a{
-        img{
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-    }
-}
+
 
 
 
@@ -336,6 +348,16 @@ li{
     padding: 6px;
     border-radius: 6px;
     background-color: #93d4de3d;
+    .avatar{
+        a{
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+    }
 }
 
 .which_form{

@@ -26,13 +26,14 @@ $('#cancel_post_btn').click(function(){
 
 $('.show_comments').click(function(){
     let pContent=$(this).html()
+    let post_id = $(this).attr('post_id')
 
     if(pContent == 'Hide comments'){
-        $(this).html('Show comments')
-        $('.display_comment').hide()
+        $(this).html('Show comments...')
+        $(`.${post_id}`).hide()
     }
     else{
         $(this).html('Hide comments')
-        $('.display_comment').show()
+        $(`.${post_id}`).show()
     }
 })

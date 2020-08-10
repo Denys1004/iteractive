@@ -3,7 +3,7 @@
         <ul>
             {% if request.session.user_id != null %}
             <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="home"></ion-icon>My Profile</a></li>
-            <li><a href="/dashboard"><ion-icon name="desktop"></ion-icon>Dashboard</a></li>
+            <li><a href="/dashboard"><ion-icon name="desktop"></ion-icon>News</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="chatbubbles"></ion-icon>Messages</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="camera"></ion-icon>Images</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="musical-notes"></ion-icon>Music</a></li>
