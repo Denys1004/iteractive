@@ -2,21 +2,14 @@
     <nav>
         <ul>
             {% if request.session.user_id != null %}
-            <li><a href="/user/{{ request.session.user_id }}/profile">My Profile</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/user/{{ request.session.user_id }}/profile">Messages</a></li>
-            <li><a href="/user/{{ request.session.user_id }}/profile">Images</a></li>
-            <li><a href="/user/{{ request.session.user_id }}/profile">Music</a></li>
-            <li><a href="/user/{{ request.session.user_id }}/profile">Video</a></li>
-            <li>
-                {% if request.session.user_id != null %}
-                <a href="/logout">Logout</a>
-                {% else %}
-                <a href="/login">Login</a>
-                {% endif %}
-            </li>  
+            <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="home"></ion-icon>My Profile</a></li>
+            <li><a href="/dashboard"><ion-icon name="desktop"></ion-icon>Dashboard</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="chatbubbles"></ion-icon>Messages</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="camera"></ion-icon>Images</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="musical-notes"></ion-icon>Music</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="film"></ion-icon>Video</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="people"></ion-icon>All Users</a></li>
             {% endif %}
-
         </ul>
     </nav>
 </div>

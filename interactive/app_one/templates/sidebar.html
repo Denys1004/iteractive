@@ -2,7 +2,7 @@
     <ul>
         <li>
             {% if request.session.user_id != null %}
-            <a href="/logout">Logout</a>
+            <a href="/logout">Logout <ion-icon name="reload"></ion-icon></a>
             {% else %}
             <a href="/login">Login</a>
             {% endif %}

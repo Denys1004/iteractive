@@ -68,13 +68,13 @@ li{
             align-items: center;
             p{
                 margin-right: 10px;
-                padding-top: 18px;
                 color: white;
             }
             img{
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
+                object-fit: cover;
             }
         }
     }
@@ -85,7 +85,7 @@ li{
 .inner_container{
     width: 1000px;
     margin: auto;
-    padding-left: 100px;
+    padding-left: 60px;
     min-height: 86vh;
     .inner{
         display: flex;
@@ -99,14 +99,16 @@ li{
     margin-right: 20px;
     li{
         margin-top: 10px;
+        width: 100px;
         a{
             font-size: 14px;
             color: #17a2b8;
-            
+            ion-icon {
+                padding-right: 10px;
+              }
         }
     }
 }
-
 
 
 
@@ -248,6 +250,7 @@ li{
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 
@@ -256,12 +259,19 @@ li{
     margin-left: 20px;
     li{
         margin-top: 10px;
+        width: 80px;
         a{
             font-size: 14px;
             color: #17a2b8;
-            
+            ion-icon {
+                padding-left: 6px;
+            }
         }
     }
+}
+.hydrated {
+    visibility: inherit;
+    margin-bottom: -2px;
 }
 
 
@@ -283,11 +293,17 @@ li{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        img{
+        .box{
             width: 200px;
             height: 200px;
-            border-radius: 50%;
+            img{
+                border-radius: 50%;
+                width: 200px;
+                height: 200px;
+                object-fit: cover;
+            }
         }
+
         .profile_info{
             text-align: right;
         }

@@ -94,7 +94,6 @@ li {
 
 #search_bar_container #search_bar .current_user_container p {
   margin-right: 10px;
-  padding-top: 18px;
   color: white;
 }
 
@@ -102,12 +101,14 @@ li {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .inner_container {
   width: 1000px;
   margin: auto;
-  padding-left: 100px;
+  padding-left: 60px;
   min-height: 86vh;
 }
 
@@ -126,11 +127,16 @@ li {
 
 #navigation li {
   margin-top: 10px;
+  width: 100px;
 }
 
 #navigation li a {
   font-size: 14px;
   color: #17a2b8;
+}
+
+#navigation li a ion-icon {
+  padding-right: 10px;
 }
 
 .main_container {
@@ -296,6 +302,8 @@ li {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #sidebar_container {
@@ -305,11 +313,21 @@ li {
 
 #sidebar_container li {
   margin-top: 10px;
+  width: 80px;
 }
 
 #sidebar_container li a {
   font-size: 14px;
   color: #17a2b8;
+}
+
+#sidebar_container li a ion-icon {
+  padding-left: 6px;
+}
+
+.hydrated {
+  visibility: inherit;
+  margin-bottom: -2px;
 }
 
 .signin_container {
@@ -336,10 +354,17 @@ li {
           justify-content: space-between;
 }
 
-.profile_page_container .avatar_img img {
+.profile_page_container .avatar_img .box {
   width: 200px;
   height: 200px;
+}
+
+.profile_page_container .avatar_img .box img {
   border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .profile_page_container .avatar_img .profile_info {
