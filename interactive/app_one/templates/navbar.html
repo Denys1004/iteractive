@@ -2,8 +2,8 @@
     <nav>
         <ul>
             {% if request.session.user_id != null %}
-            <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile">My Profile</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile">Messages</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile">Images</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile">Music</a></li>

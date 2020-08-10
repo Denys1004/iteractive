@@ -31,18 +31,31 @@
                                     </div>
                                     
                                 </div>
+                                <!-- <h3 class="post_title">{{ post.title }}</h3> -->
                                 <p class="post_content">{{ post.content }}</p>
+                                <!-- <small>{{ post.id }}</small> -->
+
+                                <!-- if post has an video, display this: -->
 
                                 {% for i in post.videos.all %}
                                 <div class="one_video_container">			
                                     {% video i.video '520x300' %}		
                                 </div>
                                 {% endfor %}
-                                
+
+                                <!-- if post has an image, display this: -->
                                 <div class="post_image_container">
-                                    <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="{{post_image.name}}">
+                                    <img src="{{ MEDIA_URL }}{{ post.post_image }}" alt="">
                                 </div>
-                                
+
+
+                                <div class="comment_container">
+                                    <form action="/add_coment/post/{{ post.content }}" id="form_addComment">
+                                        <div class="form-group">
+                                            <input type="text" name="comment" class="form-control" placeholder="write a comment">
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>
@@ -52,7 +65,7 @@
                 {% include 'sidebar.html' %}
             </div>
         </div>
-        
+
         {% include 'footer.html' %}
     </div>
 </body>

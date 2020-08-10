@@ -43,12 +43,30 @@
                                 <img src="{{ MEDIA_URL }}{{ user.avatar }}" alt="{{ post.poster.first_name}}'s avatar">
                             </div>
                             <div class="which_form">
-                                <p id ='image_post_btn'>Add Image</p>
+                                <p id ='text_post_btn'>Add Text Post</p>
                                 <p class="devider"> | </p>
-                                <p id ='video_post_btn'>Add Video</p>
+                                <p id ='image_post_btn'>Add Image Post</p>
+                                <p class="devider"> | </p>
+                                <p id ='video_post_btn'>Add Video Post</p>
                                 <p class="devider"> | </p>
                                 <p id ='cancel_post_btn'>Cancel</p>
                             </div>
+                        </div>
+
+                        <!-- text_post -->
+                        <div id="text_post">
+                            <form action="/create_new_text_post" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="title">Title:</label>
+                                    <input type="text" name="title" class="form-control" id="title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="content">Description:</label>
+                                    <input type="text" name="content" class="form-control" class="post_content">
+                                </div>
+                                <button class="btn btn-info">Post</button>
+                            </form>
                         </div>
                 
                         <!-- image_post -->
@@ -57,7 +75,7 @@
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label for="content">Description:</label>
-                                    <input type="text" name="content" class="form-control" id="content" >
+                                    <input type="text" name="content" class="form-control" class="post_content">
                                 </div>
                                 <div class="form-group">
                                     <label for="files">Files:</label>
@@ -72,7 +90,7 @@
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label for="content">Description:</label>
-                                    <input type="text" name="content" class="form-control" id="content" >
+                                    <input type="text" name="content" class="form-control" class="post_content" >
                                 </div>
                                 <div class="form-group">
                                     <label for="video_item">Video URL:</label>

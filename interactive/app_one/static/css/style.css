@@ -290,6 +290,7 @@ li {
   margin: 0 10px;
 }
 
+#text_post_btn,
 #image_post_btn,
 #video_post_btn,
 #cancel_post_btn {
@@ -297,6 +298,7 @@ li {
   cursor: pointer;
 }
 
+#text_post,
 #image_post,
 #video_post {
   display: none;
@@ -306,7 +308,6 @@ li {
 
 #footer_container {
   width: 100%;
-  background-color: #17a2b8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -317,11 +318,11 @@ li {
       -ms-flex-pack: center;
           justify-content: center;
   min-height: 8vh;
-  color: white;
+  color: #17a2b8;
   letter-spacing: 0.4px;
 }
 
 #footer_container a {
-  color: white;
+  color: black;
 }
 /*# sourceMappingURL=style.css.map */
