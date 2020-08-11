@@ -30,10 +30,11 @@ $('.show_comments').click(function(){
 
     if(pContent == 'Hide comments'){
         $(this).html('Show comments...')
-        $(`.${post_id}`).hide()
+        $(`.${post_id}display`).hide()
     }
     else{
         $(this).html('Hide comments')
-        $(`.${post_id}`).show()
+        $(`.${post_id}display`).show()
     }
 })
+

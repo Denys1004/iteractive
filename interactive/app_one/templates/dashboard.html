@@ -52,12 +52,13 @@
                      
 
                                 <div class="comment_container">
-                                    <form action="/add_comment/post/{{ post.id }}" id="form_addComment" method="POST">
+                                    <form action="/add_comment/post/{{ post.id }}" class="comment_form" method="POST">
                                         {% csrf_token %}
                                         <div class="comment_input">
                                             <div class="add_comment_input">
                                                 <input type="text" name="comment" placeholder="write a comment">
                                             </div>
+                                            <input type="hidden" name="post_id" value="post.id">
                                             <button class="btn btn-outline-info btn_add" >Add</button>
                                         </div>
                                     </form>
@@ -65,8 +66,9 @@
                                     <!-- if post has comments show this: -->
                                     {% if post.comments.all %}
                                     <p post_id="{{post.id}}" class="show_comments">Show comments...</p>
+                                    {% endif %}
 
-                                    <div class="display_comments_container {{post.id}}">
+                                    <div class="display_comments_container {{post.id}}display">
                                         {% for comment in post.comments.all %}
                                         <div class="display_comment">
                                             <div class="comment_poster_photo">
@@ -81,7 +83,7 @@
                                         <hr>
                                         {% endfor %}
                                     </div>
-                                    {% endif %}
+
 
 
                                 </div>
