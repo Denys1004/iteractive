@@ -24,6 +24,9 @@ $('#cancel_post_btn').click(function(){
 })
 
 
+
+
+
 $('.show_comments').click(function(){
     let pContent=$(this).html()
     let post_id = $(this).attr('post_id')
@@ -38,3 +41,21 @@ $('.show_comments').click(function(){
     }
 })
 
+
+
+$(".comment_container").on('submit', '.comment_form', function(e){
+    e.preventDefault();
+    let post_id = $(this).attr('post_id')
+    let data = $(this).serialize();
+    let thisForm = $(this);
+    $.ajax({
+        method: 'POST',
+        data: data,
+        url: '/post_comment'
+    }).done(function(res){
+        thisForm.siblings('.display_comments_container').html(res)
+        $(`.${post_id}display`).show()
+        $(`.${post_id}paragraph`).html("Hide comments")
+        thisForm[0].reset();
+    })
+})

@@ -130,6 +130,19 @@ def add_comment(request, post_id):
     return redirect('/dashboard')
 
 
+def post_comment_with_ajax(request):
+    needed_post = Post.objects.get(id = request.POST['post_id'])
+    comment_poster = User.objects.get(id = request.session['user_id'])
+    Comment.objects.create(comment=request.POST['comment'], poster = comment_poster, post = needed_post)
+    all_posts_comments = needed_post.comments.all()
+    context = {
+        'current_post_comments':all_posts_comments,
+        'curr_user': User.objects.get(id = request.session['user_id']),
+        'posts': Post.objects.all().order_by('-created_at'),
+        'videos': Video_item.objects.all()
+    }
+    return render(request, 'comments_partial.html', context)
+
 
 # LOGOUT
 def logout(request):

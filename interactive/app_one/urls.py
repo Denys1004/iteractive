@@ -15,6 +15,8 @@ urlpatterns = [
 
     path('add_comment/post/<int:post_id>', views.add_comment),
 
+    path('post_comment', views.post_comment_with_ajax),
+
 
     path('logout', views.logout)
 ]

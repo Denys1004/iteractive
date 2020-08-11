@@ -1,4 +1,4 @@
-{% for comment in post.comments.all %}
+{% for comment in current_post_comments %}
 <div class="display_comment">
     <div class="comment_poster_photo">
         <a href="/user/{{ comment.poster.id }}/profile"><img src="{{ MEDIA_URL }}{{ comment.poster.avatar }}" alt=""></a>
