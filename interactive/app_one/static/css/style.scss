@@ -384,7 +384,16 @@ li{
     background-color: #93d4de3d;
 }
 
-
+.avatar{
+    a{
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+}
 // Footer
 // Search bar container
 #footer_container{

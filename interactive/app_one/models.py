@@ -91,6 +91,7 @@ class User(models.Model):
     birth_date = models.DateTimeField()	
     avatar = models.ImageField(upload_to='avatars', default=None, blank=True, null = True)	#upload to avatars is a directory inside media directory, it will go like media/avatars								
     email = models.TextField()
+    has_message = models.IntegerField(default=0)
     phone_num = models.IntegerField(blank=True, null = True)
     about = models.TextField(blank=True, null = True)
     password = models.TextField()	
@@ -141,3 +142,16 @@ class Video_item(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)  								
     updated_at = models.DateTimeField(auto_now = True)
 
+class Conversation(models.Model):
+    title = models.CharField(max_length=255, default="title")
+    users = models.ManyToManyField(User, related_name = 'conversations')
+    created_at = models.DateTimeField(auto_now_add = True)  								
+    updated_at = models.DateTimeField(auto_now = True)
+
+
+class Message(models.Model):
+    content = models.TextField(default = 'Hello')
+    poster = models.ForeignKey(User, related_name = 'messages', on_delete=models.CASCADE)
+    conversation = models.ForeignKey(Conversation, related_name = 'messages', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add = True)  								
+    updated_at = models.DateTimeField(auto_now = True)	

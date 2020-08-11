@@ -26,4 +26,12 @@ admin.site.register(Comment, PostAdmin)
 class MyModelAdmin(AdminVideoMixin, admin.ModelAdmin):
     pass
 
+class ConversationAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Conversation, PostAdmin)
+
+class MessageAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Message, PostAdmin)
+
 admin.site.register(Video_item, MyModelAdmin)

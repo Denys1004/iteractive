@@ -4,7 +4,13 @@
             {% if request.session.user_id != null %}
             <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="home"></ion-icon>My Profile</a></li>
             <li><a href="/dashboard"><ion-icon name="desktop"></ion-icon>News</a></li>
-            <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="chatbubbles"></ion-icon>Messages</a></li>
+            <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="chatbubbles"></ion-icon>
+                {% if curr_user.has_message %}
+                <a href="/messages">Messages <ion-icon name="mail-unread-outline"></ion-icon></a>
+                {% endif %}
+            
+            </a></li>
+
             <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="camera"></ion-icon>Images</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="musical-notes"></ion-icon>Music</a></li>
             <li><a href="/user/{{ request.session.user_id }}/profile"><ion-icon name="film"></ion-icon>Video</a></li>

@@ -1,0 +1,35 @@
+{% load embed_video_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'head.html' %}
+    <title>Profile</title>
+</head>
+<body>
+    <div class="outer_container">
+        {% include 'search.html' %}
+
+        <div class="inner_container">
+            <div class="inner">
+                {% include 'navbar.html' %}
+    
+                <div class="message_container">
+                    {% for conversation in cur_user.conversations.all %}
+                        {% for friend in conversation.users.all %}
+                        {% if friend.id != cur_user.id %}
+                        <h2>{{ friend.first_name }}</h2>
+                        {% endif%}
+                        {% endfor %}
+                        <hr>
+                    {% endfor %}
+
+
+                </div>
+    
+                {% include 'sidebar.html' %}
+            </div>
+        </div>
+    {% include 'footer.html' %}
+    </div>
+</body>
+</html>

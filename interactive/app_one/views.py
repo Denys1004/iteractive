@@ -144,6 +144,37 @@ def post_comment_with_ajax(request):
     return render(request, 'comments_partial.html', context)
 
 
+
+def send_message(request, user_id):
+    receiver = User.objects.get(id = user_id)
+    sender = User.objects.get(id = request.session['user_id'])
+    if request.method == "GET":
+        context = {
+            'receiver': receiver,
+            'sender': sender
+        }
+        return render(request, 'send_message.html', context)
+    else:
+        new_conversation = Conversation.objects.create(title =request.POST['content'][:30] )
+        new_conversation.users.add(receiver, sender)
+        # new_conversation.save()
+
+
+        new_message = Message.objects.create(content = request.POST['content'],poster = sender, conversation=new_conversation)
+        receiver.has_message = 1
+        receiver.save()
+        return redirect('/messages')
+
+
+def display_messages(request):
+    context = {
+        'cur_user': User.objects.get(id = request.session['user_id'])
+    }
+    return render(request, 'display_conversations.html', context)
+
+
+
+
 # LOGOUT
 def logout(request):
     request.session.clear()

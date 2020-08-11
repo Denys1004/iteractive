@@ -445,6 +445,14 @@ li {
   background-color: #93d4de3d;
 }
 
+.avatar a img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 #footer_container {
   width: 100%;
   display: -webkit-box;
