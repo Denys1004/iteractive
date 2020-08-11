@@ -14,14 +14,20 @@
                 {% include 'navbar.html' %}
     
                 <div class="message_container">
-                    {% for conversation in cur_user.conversations.all %}
-                        {% for friend in conversation.users.all %}
-                        {% if friend.id != cur_user.id %}
-                        <h2>{{ friend.first_name }}</h2>
-                        {% endif%}
+                    <div class="main_container">
+                        <div class="page_title_container">
+                            <h4>Messages</h4>
+                        </div>
+                        {% for conversation in cur_user.conversations.all %}
+                            {% for friend in conversation.users.all %}
+                                {% if friend.id != cur_user.id %}
+                                    <h2>{{ friend.first_name }}</h2>
+                                {% endif%}
+                            {% endfor %}
+                            <hr>
                         {% endfor %}
-                        <hr>
-                    {% endfor %}
+                    </div>
+
 
 
                 </div>

@@ -127,16 +127,26 @@ li {
 
 #navigation li {
   margin-top: 10px;
-  width: 100px;
+  width: 118px;
 }
 
 #navigation li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   font-size: 14px;
   color: #17a2b8;
 }
 
 #navigation li a ion-icon {
   padding-right: 10px;
+  padding-top: 2px;
+}
+
+#navigation li a .icon_new_message {
+  color: red;
+  padding-top: 4px;
+  padding-left: 6px;
 }
 
 .main_container {
@@ -339,6 +349,7 @@ li {
 
 #sidebar_container li a ion-icon {
   padding-left: 6px;
+  padding-top: 3px;
 }
 
 .hydrated {

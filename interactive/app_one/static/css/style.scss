@@ -99,13 +99,21 @@ li{
     margin-right: 20px;
     li{
         margin-top: 10px;
-        width: 100px;
+        width: 118px;
         a{
+            display: flex;
             font-size: 14px;
             color: #17a2b8;
             ion-icon {
                 padding-right: 10px;
-              }
+                padding-top: 2px;
+            }
+            .icon_new_message{
+                color: red;
+                padding-top: 4px;
+                padding-left: 6px;
+
+            }
         }
     }
 }
@@ -287,6 +295,7 @@ li{
             color: #17a2b8;
             ion-icon {
                 padding-left: 6px;
+                padding-top: 3px;
             }
         }
     }

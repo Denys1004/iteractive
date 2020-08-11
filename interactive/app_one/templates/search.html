@@ -11,8 +11,8 @@
         </div>
         <div class="current_user_container">
             {% if request.session.user_id != null %}
-            <p>{{ curr_user.first_name }}</p>
-            <img src="{{ MEDIA_URL }}{{ curr_user.avatar }}" alt="avatar">
+            <p>{{ cur_user.first_name }}</p>
+            <img src="{{ MEDIA_URL }}{{ cur_user.avatar }}" alt="avatar">
             {% endif %}
         </div>
     </div>

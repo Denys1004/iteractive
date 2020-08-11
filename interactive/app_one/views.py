@@ -26,7 +26,7 @@ def user_profile(request, user_id):
     cur_user = User.objects.get(id=user_id)
     user_posts = cur_user.poster.all().order_by('-created_at')
     context = {
-        'curr_user':User.objects.get(id=request.session['user_id']),
+        'cur_user':User.objects.get(id=request.session['user_id']),
         'user':cur_user,
         'user_posts':user_posts
     }
@@ -137,7 +137,7 @@ def post_comment_with_ajax(request):
     all_posts_comments = needed_post.comments.all()
     context = {
         'current_post_comments':all_posts_comments,
-        'curr_user': User.objects.get(id = request.session['user_id']),
+        'cur_user': User.objects.get(id = request.session['user_id']),
         'posts': Post.objects.all().order_by('-created_at'),
         'videos': Video_item.objects.all()
     }
